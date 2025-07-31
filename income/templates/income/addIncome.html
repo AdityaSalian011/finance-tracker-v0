@@ -1,0 +1,132 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" 
+    />
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-t from-[hsl(0,0%,0%)] to-[hsl(0,0%,10%)]">
+    <div class="flex flex-col w-full h-full bg-transparent">
+        {% if user and user.is_authenticated %}
+        <nav class="fixed w-full top-0 flex items-center justify-between w-[calc(100%-5rem)] h-auto bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md p-2 z-40">
+            <div class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+                <i class="fa-solid fa-money-check fa-2x mr-2"></i>
+                Finance Tracker
+            </div>
+            <a href="{% url 'logout' %}" class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+                <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
+                LogOut
+            </a>
+        </nav>
+        {% else %}
+        <nav class="fixed w-full top-0 flex items-center justify-between w-[calc(100%-5rem)] h-auto bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md p-2 z-40">
+            <div class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+                <i class="fa-solid fa-money-check fa-2x mr-2"></i>
+                Finance Tracker
+            </div>
+            <a href="{% url 'login' %}" class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+                <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
+                LogIn
+            </a>
+        </nav>
+        {% endif %}
+        <div class="w-[80%] m-[10%] flex items-center justify-center">
+        <h1 class="text-[hsl(0,0%,95%)] text-5xl font-bold leading-tight text-center py-8">Add <span class="text-[hsl(180,100%,60%)]">Income</span> Sources</h1>
+        <div class="mt-2 flex items-center justify-evenly space-x-3">
+            <form action="" method="post" class="w-[90%] max-w-7xl flex flex-col bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] items-center p-8 space-y-10 border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-lg">
+                {% csrf_token %}
+                <div class="w-full flex items-center justify-between">
+                    <div class="w-full flex items-center justify-center">
+                        <label for="" class="text-2xl font-bold text-[hsl(0,0%,95%)]">Monthly Income</label>
+                        <div class="w-full flex items-center text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] space-x-2 p-3">
+                            <span class="text-lg font-bold">$</span>
+                            {{ form.monthly_income|add_class:"w-full text-lg bg-[hsl(0,0%,15%)] font-bold focus:outline-none"|attr:"min:0"|attr:"max:9999999999"|attr:"step:0.01"|attr:"id:monthly-inc" }}
+                        </div>
+                    </div>
+                    <p class="ml-4 text-md font-light text-[hsl(0,0%,30%)] tracking-wider">If you don't have a job you can write 0 here!</p>
+                </div>
+                
+                <!-- business section  -->
+                <div class="question w-full flex items-center justify-between" data-section="business">
+                    <label for="" class="text-2xl font-bold text-[hsl(0,0%,95%)]">Do you operate a business?</label>
+                    <div class="flex items-center justify-center space-x-4">
+                        <button class="yes bg-[hsl(0,0%,5%)] hover:bg-[hsl(0,0%,95%,0.3)] text-[hsl(0,0%,95%)] font-bold border border-[hsl(0,0%,95%)] px-6 py-2 rounded-lg" type="button">Yes</button>
+                        <button class="no bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.3)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg" type="button">No</button>
+                    </div>
+                </div>
+                <div class="response hidden w-full  items-center justify-between" data-section="business">
+                    <div class="input hidden w-full items-center justify-center">
+                        <label for="" class="text-2xl font-bold text-[hsl(0,0%,95%)]">Monthly Income</label>
+                        <div class="w-full flex items-center text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] space-x-2 p-3">
+                            <span class="text-lg font-bold">$</span>
+                            {{ form.business_income|add_class:"income w-full text-lg bg-[hsl(0,0%,15%)] font-bold focus:outline-none"|attr:"min:0"|attr:"max:9999999999"|attr:"step:0.01"|attr:"id:business-inc"  }}
+                        </div>
+                    </div>
+                    <p class="message hidden text-lg font-bold text-[hsl(0,0%,70%)] tracking-wider">No Business Income.</p>
+                    <button class="back ml-4 bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.3)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg" type="button">Back</button>
+                </div>
+                <!-- business section ends here  -->
+
+                <!-- freelance section  -->
+                <div class="question w-full flex items-center justify-between" data-section="freelance">
+                    <label for="" class="text-2xl font-bold text-[hsl(0,0%,95%)]">Do you work in freelance?</label>
+                    <div class="flex items-center justify-center space-x-4">
+                        <button class="yes bg-[hsl(0,0%,5%)] hover:bg-[hsl(0,0%,95%,0.3)] text-[hsl(0,0%,95%)] font-bold border border-[hsl(0,0%,95%)] px-6 py-2 rounded-lg" type="button">Yes</button>
+                        <button class="no bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.3)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg" type="button">No</button>
+                    </div>
+                </div>
+                <div class="response hidden w-full  items-center justify-between" data-section="freelance">
+                    <div class="input hidden w-full items-center justify-center">
+                        <label for="" class="text-2xl font-bold text-[hsl(0,0%,95%)]">Monthly Income</label>
+                        <div class="w-full flex items-center text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] space-x-2 p-3">
+                            <span class="text-lg font-bold">$</span>
+                            {{ form.freelance_income|add_class:"income w-full text-lg bg-[hsl(0,0%,15%)] font-bold focus:outline-none"|attr:"min:0"|attr:"max:9999999999"|attr:"step:0.01"|attr:"id:freelance-inc"  }}
+                        </div>
+                    </div>
+                    <p class="message hidden text-lg font-bold text-[hsl(0,0%,70%)] tracking-wider">No Freelance Income.</p>
+                    <button class="back ml-4 bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.3)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg" type="button">Back</button>
+                </div>
+                <!-- freelance section ends here  -->
+
+                <!-- other section  -->
+                <div class="question w-full flex items-center justify-between" data-section="other">
+                    <label for="" class="text-2xl font-bold text-[hsl(0,0%,95%)]">Do you have any other sources of income?</label>
+                    <div class="flex items-center justify-center space-x-4">
+                        <button class="yes bg-[hsl(0,0%,5%)] hover:bg-[hsl(0,0%,95%,0.3)] text-[hsl(0,0%,95%)] font-bold border border-[hsl(0,0%,95%)] px-6 py-2 rounded-lg" type="button">Yes</button>
+                        <button class="no bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.3)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg" type="button">No</button>
+                    </div>
+                </div>
+                <div class="response hidden w-full  items-center justify-between" data-section="other">
+                    <div class="input hidden w-full items-center justify-center">
+                        <label for="" class="text-2xl font-bold text-[hsl(0,0%,95%)]">Monthly Income</label>
+                        <div class="w-full flex items-center text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] space-x-2 p-3">
+                            <span class="text-lg font-bold">$</span>
+                            {{ form.other_income|add_class:"income w-full text-lg bg-[hsl(0,0%,15%)] font-bold focus:outline-none"|attr:"min:0"|attr:"max:9999999999"|attr:"step:0.01"|attr:"id:other-inc"  }}
+                        </div>
+                    </div>
+                    <p class="message hidden text-lg font-bold text-[hsl(0,0%,70%)] tracking-wider">No Other Income.</p>
+                    <button class="back ml-4 bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.3)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg" type="button">Back</button>
+                </div>
+                <!-- other section ends here  -->
+
+                <button type="submit" class="w-full bg-[hsl(0,0%,5%)] hover:bg-[hsl(180,100%,60%,0.3)] text-[hsl(180,100%,60%)] font-bold border border-[hsl(180,100%,60%)] px-6 py-2 rounded-lg">Proceed</button>
+            </form>
+        </div>
+    </div>
+<script src="{% static 'js/addIncome_v3.js' %}"></script>
+</body>
+</html>

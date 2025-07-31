@@ -1,0 +1,61 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" 
+    />
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="fixed inset-0 flex flex-col items-center justify-center backdrop-blur-2xl bg-gradient-to-t from-[hsl(0,0%,0%)] to-[hsl(0,0%,10%)]">
+        <div>
+            <h1 class="text-[hsl(0,0%,95%)] text-4xl font-bold leading-tight text-center py-8">Login Page</h1>
+        </div>
+        <form action="" method="post" class="w-[90%] max-w-md flex flex-col bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] items-center p-8 space-y-5 border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] rounded-lg">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="text-center text-md font-semibold tracking-wider text-[hsl(0,100%,50%)]">
+                    {% for error in form.non_field_errors %}
+                        <p>{{error}}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            <label for="{{form.username.id_for_label}}" class="text-2xl font-bold text-[hsl(0,0%,95%)]">UserName</label>
+            {{form.username|add_class:"text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-bold p-3 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)]"|attr:"placeholder:Username"|attr:"autocomplete:off"|attr:"required"}}
+            {% if form.username.errors %}
+                <p class="text-sm text-red-600 font-semibold">{{ form.username.errors.0 }}</p>
+            {% endif %}
+
+            <label for="{{form.password.id_for_label}}" class="text-2xl font-bold text-[hsl(0,0%,95%)]">Password</label>
+            {{form.password|add_class:"text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-bold p-3 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)]"|attr:"placeholder:Password"|attr:"autocomplete:off"|attr:"required"}}
+            {% if form.password.errors %}
+                <p class="text-sm text-red-600 font-semibold">{{ form.password.errors.0 }}</p>
+            {% endif %}
+
+            <div class="flex flex-col items-center justify-center">
+                <p class="text-md text-[hsl(0,0%,70%)] font-semibold tracking-wider">Forgot Your Password?</p>
+                <a href="{% url 'password_reset' %}" class="text-[hsl(0,0%,60%)] font-semibold hover:underline hover:text-[hsl(220,100%,50%)] transition">Click here</a>
+            </div>
+            <div class="flex flex-col items-center justify-center">
+                <p class="text-md text-[hsl(0,0%,70%)] font-semibold tracking-wider">Never Logged In Before?</p>
+                <a href="{% url 'signup' %}" class="text-[hsl(0,0%,60%)] font-semibold hover:underline hover:text-[hsl(220,100%,50%)] transition">Click here</a>
+            </div>
+            <button type="submit" class="w-full bg-[hsl(0,0%,5%)] hover:bg-[hsl(0,0%,95%,0.3)] text-[hsl(0,0%,95%)] font-bold border border-[hsl(0,0%,95%)] px-6 py-2 rounded-lg">Log In</button>
+        </form>
+    </div>
+</body>
+</html>

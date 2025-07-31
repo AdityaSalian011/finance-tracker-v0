@@ -1,0 +1,212 @@
+{% load static %}
+{% load widget_tweaks %}
+{% load expense_filters %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" 
+    />
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-t from-[hsl(0,0%,0%)] to-[hsl(0,0%,10%)]">
+    <div class="flex flex-col w-full h-full bg-transparent">
+        {% if user and user.is_authenticated %}
+        <!-- sidebar  -->
+        <div id="sidebar" class="fixed top-0 left-0 h-screen w-20 flex flex-col bg-gradient-to-r from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] pt-4 px-3 space-y-5 shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md z-30">
+            <a href="{% url 'show_income' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-money-bill-wave fa-2x text-[hsl(180,100%,60%)]"></i>
+            </a>
+            <a href="{% url 'add_expense' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-arrow-up-right-from-square fa-2x text-[hsl(180,100%,60%)]"></i>
+            </a>
+            <a href="{% url 'add_budget' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-wallet fa-2x text-[hsl(180,100%,60%)]"></i>
+            </a>
+            <a href="{% url 'dashboard' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-chart-line fa-2x text-[hsl(180,100%,60%)]"></i>
+            </a>   
+            <a href="{% url 'password_change' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-key fa-2x text-[hsl(180,100%,60%)]"></i>
+            </a>   
+        </div>
+        <nav class="fixed top-0 ml-20 flex items-center justify-between w-[calc(100%-5rem)] bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] rounded-md p-2 z-40">
+            <div class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2 border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)]">
+                <i class="fa-solid fa-money-check fa-2x mr-2"></i>
+                Finance Tracker
+            </div>
+            <div class="flex space-x-4">
+                {% if all_entries %}
+                <a href="{% url 'download_expense' %}" class="text-2xl font-bold tracking-tight text-[hsl(120,40%,20%)] bg-[hsl(120,40%,80%)] rounded-lg hover:bg-[hsl(120,40%,70%)] flex items-center px-2">
+                    <i class="fa-solid fa-file-arrow-down mr-2"></i>
+                    Download Expense
+                </a>
+                {% endif %}
+                <a href="{% url 'logout' %}" class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+                    <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
+                    LogOut
+                </a>
+            </div>
+        </nav>
+        {% else %}
+        <nav class="fixed top-0 ml-20 flex items-center justify-between w-[calc(100%-5rem)] h-auto bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md p-2 z-40">
+            <div class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+                <i class="fa-solid fa-money-check fa-2x mr-2"></i>
+                Finance Tracker
+            </div>
+            <a href="{% url 'login' %}" class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+                <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
+                Login
+            </a>
+        </nav>
+        {% endif %}
+        <!-- overlay button  -->
+        <div class="fixed bottom-0 right-0 mb-2 mr-4">
+            <button id="add-button" class="w-[300px] text-[hsl(0,0%,95%)] bg-[hsl(0,0%,10%)] hover:bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] text-lg font-semibold px-5 py-2 border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-lg flex items-center justify-start">
+                <i class="fa-solid fa-circle-plus mr-2"></i>
+            Add Expense</button>
+        </div>
+
+        <!-- pop up notification if expense close to or exceeds budget  -->
+        <div id="toast" class="fixed top-20 right-6 bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] text-center px-3 py-2 rounded-xl border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] shadow-lg z-50 opacity-0 translate-y-[-20px] transition-all duration-300 ease-in-out pointer-events-none">
+            <p id="toast-msg" class="text-md font-semibold text-[hsl(0,100%,50%)]"></p>
+        </div>
+
+        <!-- overlay starts here  -->
+        <div id="overlay" class="fixed inset-0 bg-gradient-to-t from-[hsl(0,0%,0%,0.8)] to-[hsl(0,0%,0%,0.3)] hidden items-center justify-center z-50">
+            <form action="{% url 'add_expense' %}" method="post" class="w-[90%] max-w-md flex flex-col bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] items-center p-8 space-y-5 border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] rounded-lg">
+                {% csrf_token %}
+                <div class="container flex flex-col items-center space-y-5">
+                    <label class="text-2xl font-bold text-[hsl(0,0%,95%)]" for="">Expense Category</label>
+                    <select name="exp_category" id="expense-category" class="w-full text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-bold p-3 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)]" required>
+                        {% for value, label in form.fields.exp_category.choices %}
+                            <option class="text-center" value="{{value}}" {% if form.exp_category.value == value %}selected{% endif %}>{{label}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="container hidden flex-col items-center space-y-5">
+                    <label class="text-2xl font-bold text-[hsl(0,0%,95%)]" for="">Name</label>
+                    <div class="w-full flex items-center justify-center space-x-2">
+                        <input type="text" name="name" id="custom-category" autocomplete="off" placeholder="(e.g. Home, Shopping, Rent...)" class="text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-bold p-3 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)] mr-2">
+                        <button type="button" class="p-3 text-xl bg-[hsl(0,0%,15%)]" id="show-dropdown">↩️</button>
+                    </div>
+                </div>
+                <div class="container flex flex-col items-center space-y-5">
+                    <label class="text-2xl font-bold text-[hsl(0,0%,95%)]" for="">Amount</label>
+                    <div class="w-full flex items-center text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] space-x-2 p-3">
+                        <span class="text-lg font-bold">$</span>
+                        <input type="number" name="amount" id="amount" min="0" max="9999999999" step="0.01" class="w-full text-lg bg-[hsl(0,0%,15%)] font-bold focus:outline-none" required>
+                    </div>
+                </div>
+                <div class="container flex flex-col items-center space-y-5">
+                    <label class="text-2xl font-bold text-[hsl(0,0%,95%)]" for="">Comment</label>
+                    <input type="text" name="comment" id="comment" autocomplete="off" class="w-full text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-semibold p-2 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)]">
+                </div>
+                <div class="w-full h-12 flex space-x-2">
+                    <button id="submit-btn" type="submit" class="w-[50%] bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.3)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg">Submit</button>
+                    <button id="back-btn" type="button" class="w-[50%] bg-[hsl(0,0%,5%)] hover:bg-[hsl(0,0%,95%,0.3)] text-[hsl(0,0%,95%)] font-bold border border-[hsl(0,0%,95%)] px-6 py-2 rounded-lg">Back</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- overlay ends here  -->
+
+    
+    <div class="min-w-[80%] min-h-screen m-[10%] bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl">
+        <h1 class="text-[hsl(0,0%,95%)] text-5xl font-bold leading-tight text-center py-8"><span class="text-[hsl(180,100%,60%)]">Expense</span> Tracking Page</h1>
+        <div class="mt-2 flex items-center justify-evenly space-x-3">
+            {% for _, label in form.fields.exp_category.choices %}
+            <button 
+            type="button"
+            class="category-btn bg-[hsl(0,0%,10%)] text-[hsl(0,0%,95%)] hover:bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] text-lg font-bold tracking-wide px-4 py-2 rounded-md border border-[hsl(0,0%,30%)] transition-all duration-150 hover:scale-95" 
+            data-category="{{ label }}">
+            {{ label|title }}
+            </button>                
+            {% endfor %}
+        </div>
+        <div id="card" class="grid grid-cols-3 gap-x-2 gap-y-3 p-10">
+            {% for entries in all_entries %}
+                <div class="expense-item flex flex-col justify-between bg-[hsl(0,0%,10%)] hover:bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] border border-[hsl(0,0%,30%)] rounded-lg shadow-xl p-5 min-h-[300px]" data-category="{{ entries.exp_category }}">
+                    <div>
+                        <p class="text-[hsl(0,0%,95%)] text-2xl font-bold mb-2">
+                            <span class="text-2xl font-bold mr-1">$</span>{{ entries.amount }}
+                        </p>    
+                        {% if entries.exp_category == 'other' %}
+                            <p class="text-[hsl(0,0%,90%)] text-xl font-bold">{{ entries.name }}</p>
+                        {% else %}
+                            <p class="text-[hsl(0,0%,90%)] text-xl font-bold">{{ entries.get_exp_category_display }}</p>                           
+                        {% endif %}
+                        {% if entries.comment %}
+                            <p class="mt-4 text-[hsl(0,0%,70%)] text-md font-semibold tracking-wide">{{ entries.comment }}</p>
+                        {% endif %}
+                    </div>
+                        
+                    <div class="mt-5 flex items-center space-x-4">
+                        <button onclick="openEditOverlay({{entries.id}})" class="bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.33)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg" type="button">Edit</button>
+                        <form method="post" action="{% url 'delete_expense' entries.id %}">
+                            {% csrf_token %}
+                            <button class="bg-[hsl(0,0%,5%)] hover:bg-[hsl(0,83%,20%)] text-[hsl(0,100%,50%)] font-bold border border-[hsl(0,83%,20%)] px-6 py-2 rounded-lg" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+                <div id="edit-expense-overlay-{{ entries.id }}" class="fixed inset-0 bg-gradient-to-t from-[hsl(0,0%,0%,0.8)] to-[hsl(0,0%,0%,0.3)] hidden items-center justify-center z-50">
+                    <form action="{% url 'edit_expense' entries.id %}" method="post" class="w-[90%] max-w-md flex flex-col bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] items-center p-8 space-y-5 border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] rounded-lg">
+                        {% csrf_token %}
+                        {% with edit_form=edit_forms|get_item:entries.id %}
+                            <div class="edit-container  flex flex-col items-center w-full space-y-5">
+                                <label class="text-2xl font-bold text-[hsl(0,0%,95%)]" for="">Expense</label>
+                                <select name="exp_category" id="edit-exp-category-{{entries.id}}" class="w-full text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-bold p-3 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)]" required>
+                                    {% for value, label in edit_form.fields.exp_category.choices %}
+                                        <option class="text-center" value="{{value}}" {% if edit_form.initial.exp_category == value %}selected{% endif %}>{{label}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="edit-container hidden flex-col items-center w-full space-y-5">
+                                <label class="text-2xl font-bold text-[hsl(0,0%,95%)]" for="">Name</label>
+                                <div class="w-full flex items-center justify-center space-x-2">
+                                    <input type="text" name="name" id="edit-custom-category-{{entries.id}}" value="{{edit_form.initial.name}}" autocomplete="off" placeholder="(e.g. Home, Shopping, Rent...)" class="text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-bold p-3 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)] mr-2">
+                                    <button type="button" class="p-2 text-xl" id="show-edit-dropdown-{{entries.id}}">↩️</button>
+                                </div>
+                            </div>
+                            <div class="edit-container flex flex-col items-center w-full space-y-5">
+                                <label class="text-2xl font-bold text-[hsl(0,0%,95%)]" for="">Amount</label>
+                                <div class="w-full flex items-center text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] space-x-2 p-3">
+                                    <span class="text-lg font-bold">$</span>
+                                    <input type="number" name="amount" value="{{edit_form.initial.amount}}" min="0" max="9999999999" step="0.01" class="w-full text-lg bg-[hsl(0,0%,15%)] font-bold focus:outline-none" required>
+                                </div>
+                            </div>
+                            <div class="edit-container flex flex-col items-center w-full space-y-5">
+                                <label class="text-2xl font-bold text-[hsl(0,0%,95%)]" for="">Comment</label>
+                                {% if edit_form.initial.comment %}
+                                    <input type="text" name="comment" value="{{edit_form.initial.comment}}" autocomplete="off" class="w-full text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-semibold p-2 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)]">
+                                {% else %}
+                                    <input type="text" name="comment" autocomplete="off" class="w-full text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-semibold p-2 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)]">
+                                {% endif %}
+                            </div>
+                            <div class="w-full h-12 flex space-x-2">
+                                <button type="submit" class="w-[50%] bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.3)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg">Submit</button>
+                                <button id="edit-back-btn-{{entries.id}}" type="button" class="w-[50%] bg-[hsl(0,0%,5%)] hover:bg-[hsl(0,0%,95%,0.3)] text-[hsl(0,0%,95%)] font-bold border border-[hsl(0,0%,95%)] px-6 py-2 rounded-lg">Back</button>
+                            </div>
+                        {% endwith %}
+                    </form>
+                </div>
+            {% empty %}
+                <div class="card-info hidden"></div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+<script src="{% static 'js/addExpense_v0.js' %}"></script>
+</html>

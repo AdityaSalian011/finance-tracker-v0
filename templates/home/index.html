@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link 
+      rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+      crossorigin="anonymous" 
+      referrerpolicy="no-referrer" 
+    />
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-[hsl(0,0%,0%)] text-[hsl(0,0%,95%)]">
+    <div class="relative w-full min-h-screen flex items-center justify-center">
+        <div class="absolute inset-0 bg-cover bg-center z-0"
+            style="background-image: url('{% static 'images/home_bg.png' %}');">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[hsl(0,0%,0%)] via-transparent to-[hsl(0,0%,5%)] z-10"></div>
+
+        <div class="relative z-20 w-full text-center">
+            <h1 class="text-5xl font-bold leading-tight mb-4">Take Control of Your <span class="text-[hsl(180,100%,60%)]">Finance Journey</span></h1>
+            <p class="text-xl text-[hsl(0,0%,75%)]">Track your income and expenses with clarity. Smart insights, automated tracking, and total peace of mind.</p>
+
+            <!-- feature content -->
+            <div class="flex items-center justify-center w-full mb-12">
+                <div class="mt-12 grid grid-cols-2 gap-4 w-full">
+                    <div class="text-center p-4 bg-[hsl(0,0%,5%)] bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] hover:bg-gradient-to-t hover:from-[hsl(0,0%,10%)] hover:to-[hsl(0,0%,15%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,60%)] rounded-lg transition cursor-pointer">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-3xl text-[hsl(180,100%,60%)] mb-2"></i>
+                        <p class="font-semibold">Add Expenses</p>
+                    </div>
+                    <div class="text-center p-4 bg-[hsl(0,0%,5%)] bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] hover:bg-gradient-to-t hover:from-[hsl(0,0%,10%)] hover:to-[hsl(0,0%,15%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,60%)] rounded-lg transition cursor-pointer">
+                        <i class="fa-solid fa-wallet text-3xl text-[hsl(180,100%,60%)] mb-2"></i>
+                        <p class="font-semibold">Add Budgets</p>
+                    </div>
+                    <div class="text-center p-4 bg-[hsl(0,0%,5%)] bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] hover:bg-gradient-to-t hover:from-[hsl(0,0%,10%)] hover:to-[hsl(0,0%,15%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,60%)] rounded-lg transition cursor-pointer">
+                        <i class="fa-solid fa-chart-line text-3xl text-[hsl(180,100%,60%)] mb-2"></i>
+                        <p class="font-semibold">Dashboard Insights</p>
+                    </div>
+                    <div class="text-center p-4 bg-[hsl(0,0%,5%)] bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] hover:bg-gradient-to-t hover:from-[hsl(0,0%,10%)] hover:to-[hsl(0,0%,15%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,60%)] rounded-lg transition cursor-pointer">
+                        <i class="fa-solid fa-headset text-3xl text-[hsl(180,100%,60%)] mb-2"></i>
+                        <p class="font-semibold">24/7 Support</p>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'login' %}" class="bg-[hsl(0,0%,5%)] hover:bg-[hsl(180,100%,60%,0.3)] text-[hsl(180,100%,60%)] font-bold border border-[hsl(180,100%,60%)] px-6 py-2 rounded-lg h-6">
+                Get Started
+            </a>
+        </div>
+    </div>
+</body>
+</html>
