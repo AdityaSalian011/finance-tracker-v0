@@ -31,45 +31,32 @@
     <div class="flex flex-col w-full h-full bg-transparent">
         {% if user and user.is_authenticated %}
         <!-- sidebar  -->
-        <div id="sidebar" class="fixed top-0 left-0 h-screen w-16 md:w-20 flex flex-col bg-gradient-to-r from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] pt-4 px-3 space-y-5 shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] z-30">
-            <a href="{% url 'show_income' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
-                <i class="fa-solid fa-money-bill-wave fa-2x text-[hsl(180,100%,60%)]"></i>
+        <div id="sidebar" class="fixed top-0 left-0 h-screen w-12 sm:w-16 md:w-20 flex flex-col bg-gradient-to-r from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] pt-4 px-2 sm:px-3 space-y-3 sm:space-y-5 shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] z-30">
+            <a href="{% url 'show_income' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-1 sm:p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-money-bill-wave text-xl sm:text-2xl md:fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'add_expense' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
-                <i class="fa-solid fa-arrow-up-right-from-square fa-2x text-[hsl(180,100%,60%)]"></i>
+            <a href="{% url 'add_expense' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-1 sm:p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-arrow-up-right-from-square text-xl sm:text-2xl md:fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'add_budget' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
-                <i class="fa-solid fa-wallet fa-2x text-[hsl(180,100%,60%)]"></i>
+            <a href="{% url 'add_budget' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-1 sm:p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-wallet text-xl sm:text-2xl md:fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'dashboard' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
-                <i class="fa-solid fa-chart-line fa-2x text-[hsl(180,100%,60%)]"></i>
+            <a href="{% url 'dashboard' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-1 sm:p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-chart-line text-xl sm:text-2xl md:fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>   
-            <a href="{% url 'password_change' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
-                <i class="fa-solid fa-key fa-2x text-[hsl(180,100%,60%)]"></i>
+            <a href="{% url 'password_change' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-1 sm:p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-key text-xl sm:text-2xl md:fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>   
         </div>
-        <nav class="fixed top-0 ml-16 md:ml-20 w-[calc(100%-4rem)] md:w-[calc(100%-5rem)] flex items-center justify-between bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] p-2 z-40">
-            <div class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2 border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)]">
-                <i class="fa-solid fa-money-check fa-2x mr-2"></i>
+        <nav class="fixed top-0 ml-12 sm:ml-16 md:ml-20 w-[calc(100%-3rem)] sm:w-[calc(100%-4rem)] md:w-[calc(100%-5rem)] h-20 sm:h-16 md:h-20 flex flex-col items-center justify-center sm:flex-row sm:justify-between sm:px-3 bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] space-y-2 sm:space-y-0 sm:space-x-4 z-40">
+            <div class="w-full sm:w-auto text-xl sm:text-2xl md:text-3xl font-bold tracking-tight bg-[hsl(272,100%,60%)] sm:rounded-md hover:bg-[hsl(272,50%,60%)] flex items-center whitespace-nowrap p-1 sm:p-2 md:p-3 border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] cursor-pointer transition">
+                <i class="fa-solid fa-money-check text-2xl sm:text-3xl md:text-4xl mr-2"></i>
                 Finance Tracker
             </div>
-            <div class="flex space-x-4">
-                <a href="{% url 'logout' %}" class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
-                    <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
+                <a href="{% url 'logout' %}" class="w-full text-lg sm:text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] sm:rounded-md hover:bg-[hsl(272,50%,60%)] flex items-center whitespace-nowrap px-2 cursor-pointer transition">
+                    <i class="fa-solid fa-arrow-right-to-bracket text-xl sm:text-2xl md:text-3xl mr-2"></i>
                     LogOut
                 </a>
-            </div>
-        </nav>
-        {% else %}
-        <nav class="fixed top-0 ml-16 md:ml-20 w-[calc(100%-4rem)] md:w-[calc(100%-5rem)] flex items-center justify-between w-[calc(100%-5rem)] h-auto bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md p-2 z-40">
-            <div class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
-                <i class="fa-solid fa-money-check fa-2x mr-2"></i>
-                Finance Tracker
-            </div>
-            <a href="{% url 'login' %}" class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
-                <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
-                SignIn
-            </a>
         </nav>
         {% endif %}
         {% if not entries %}
