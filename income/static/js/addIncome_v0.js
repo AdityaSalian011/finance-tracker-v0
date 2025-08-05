@@ -1,8 +1,13 @@
 document.addEventListener('DOMContentLoaded', function(){
-    const monthlyIncome = document.getElementById('monthly-inc');
-    const businessIncome = document.getElementById('business-inc');
-    const freelanceIncome = document.getElementById('freelance-inc');
-    const otherIncome = document.getElementById('other-inc');
+    function hideElement(el){
+        el.classList.add('hidden');
+        el.classList.remove('flex', 'md:flex')
+    }
+
+    function showElement(el){
+        el.classList.remove('hidden');
+        el.classList.add('flex', 'md:flex')
+    }
 
     document.querySelectorAll('[data-section]').forEach(sectionEl => {
         const name = sectionEl.dataset.section;
@@ -18,31 +23,33 @@ document.addEventListener('DOMContentLoaded', function(){
         const back = response.querySelector('.back');
     
         yesBtn.addEventListener('click', () => {
-            question.classList.replace('flex', 'hidden');
-            response.classList.replace('hidden', 'flex');
+            hideElement(question);
+            showElement(response);
     
-            input.classList.replace('hidden', 'flex');
+            showElement(input);
         })
         
         noBtn.addEventListener('click', () => {
-            question.classList.replace('flex', 'hidden');
-            response.classList.replace('hidden', 'flex');
+            hideElement(question);
+            showElement(response);
             
             const income = response.querySelector('.income');
             income.value = '0';
             
-            message.classList.replace('hidden', 'flex');
+            showElement(message);
         })
 
         back.addEventListener('click', () => {
-            const income = input.querySelector('.income');
+            const income = response.querySelector('.income');
             if (income) {
                 income.value = '0';
             }
-            input?.classList.replace('flex', 'hidden');
-            message?.classList.replace('flex', 'hidden');
-            response.classList.replace('flex', 'hidden');
-            question.classList.replace('hidden', 'flex');
+            hideElement(input);
+            hideElement(message);
+
+            hideElement(response);
+            
+            showElement(question)
         })
     })
 })

@@ -31,48 +31,42 @@
     <div class="flex flex-col w-full h-full bg-transparent">
         {% if user and user.is_authenticated %}
         <!-- sidebar  -->
-        <div id="sidebar" class="fixed top-0 left-0 h-screen w-20 flex flex-col bg-gradient-to-r from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] pt-4 px-3 space-y-5 shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md z-30">
-            <a href="{% url 'show_income' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+        <div id="sidebar" class="fixed top-0 left-0 h-screen w-16 md:w-20 flex flex-col bg-gradient-to-r from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] pt-4 px-3 space-y-5 shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] z-30">
+            <a href="{% url 'show_income' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
                 <i class="fa-solid fa-money-bill-wave fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'add_expense' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+            <a href="{% url 'add_expense' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
                 <i class="fa-solid fa-arrow-up-right-from-square fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'add_budget' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+            <a href="{% url 'add_budget' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
                 <i class="fa-solid fa-wallet fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'dashboard' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+            <a href="{% url 'dashboard' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
                 <i class="fa-solid fa-chart-line fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>   
-            <a href="{% url 'password_change' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+            <a href="{% url 'password_change' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
                 <i class="fa-solid fa-key fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>   
         </div>
-        <nav class="fixed top-0 ml-20 flex items-center justify-between w-[calc(100%-5rem)] bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] rounded-md p-2 z-40">
-            <div class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2 border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)]">
+        <nav class="fixed top-0 ml-16 md:ml-20 w-[calc(100%-4rem)] md:w-[calc(100%-5rem)] flex items-center justify-between bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] p-2 z-40">
+            <div class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2 border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)]">
                 <i class="fa-solid fa-money-check fa-2x mr-2"></i>
                 Finance Tracker
             </div>
             <div class="flex space-x-4">
-                {% if all_entries %}
-                <a href="{% url 'download_expense' %}" class="text-2xl font-bold tracking-tight text-[hsl(120,40%,20%)] bg-[hsl(120,40%,80%)] rounded-lg hover:bg-[hsl(120,40%,70%)] flex items-center px-2">
-                    <i class="fa-solid fa-file-arrow-down mr-2"></i>
-                    Download Expense
-                </a>
-                {% endif %}
-                <a href="{% url 'logout' %}" class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+                <a href="{% url 'logout' %}" class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
                     <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
                     LogOut
                 </a>
             </div>
         </nav>
         {% else %}
-        <nav class="fixed top-0 ml-20 flex items-center justify-between w-[calc(100%-5rem)] h-auto bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md p-2 z-40">
-            <div class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+        <nav class="fixed top-0 ml-16 md:ml-20 w-[calc(100%-4rem)] md:w-[calc(100%-5rem)] flex items-center justify-between w-[calc(100%-5rem)] h-auto bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md p-2 z-40">
+            <div class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
                 <i class="fa-solid fa-money-check fa-2x mr-2"></i>
                 Finance Tracker
             </div>
-            <a href="{% url 'login' %}" class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+            <a href="{% url 'login' %}" class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
                 <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
                 SignIn
             </a>
@@ -85,30 +79,30 @@
             Add Income</a>
         </div>
         {% endif %}
-        <div class="min-w-[80%] min-h-screen m-auto pt-28 bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl shadow-2xl p-10 flex flex-col items-center justify-center space-y-14 animate-fade-in">
-            <h1 class="text-6xl text-[hsl(0,0%,95%)] font-extrabold tracking-tight leading-tight text-center">
+        <div class="ml-16 md:ml-20 w-[calc(100%-4rem)] lg:w-[calc(100%-5rem)] min-h-screen bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl shadow-2xl p-5 lg:p-10 flex flex-col items-center justify-center space-y-14 animate-fade-in">
+            <h1 class="text-4xl md:text-6xl pt-20 text-[hsl(0,0%,95%)] font-extrabold tracking-tight leading-tight text-center">
                 Your <span class="text-[hsl(180,100%,60%)] drop-shadow-md">Income Sources</span>
             </h1>
             {% for entry in entries %}
-            <div class="w-full max-w-3xl bg-[hsl(0,0%,10%)] hover:bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,60%)] rounded-lg shadow-xl p-6 hover:scale-[1.02] transition-transform duration-300 space-y-6">
+            <div class="w-full lg:max-w-3xl bg-[hsl(0,0%,10%)] hover:bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,60%)] rounded-lg shadow-xl p-6 hover:scale-[1.02] transition-transform duration-300 space-y-6">
                 <div class="text-center space-y-2">
-                    <h3 class="text-3xl font-semibold text-[hsl(0,0%,90%)] uppercase tracking-wider">Monthly Income</h3>
-                    <h5 class="text-4xl font-bold text-[hsl(0,0%,95%)] skew-y-3"><span class="mr-2 text-[hsl(100,60%,50%)]">$</span>{{entry.monthly_income}}</h5>
+                    <h3 class="text-xl md:text-3xl font-semibold text-[hsl(0,0%,90%)] uppercase tracking-wider">Monthly Income</h3>
+                    <h5 class="text-2xl md:text-4xl font-bold text-[hsl(0,0%,95%)] skew-y-3"><span class="mr-2 text-[hsl(100,60%,50%)]">$</span>{{entry.monthly_income}}</h5>
                 </div>
                 <div class="text-center space-y-2">
-                    <h3 class="text-3xl font-semibold text-[hsl(0,0%,90%)] uppercase tracking-wider">Business Income</h3>
-                    <h5 class="text-4xl font-bold text-[hsl(0,0%,95%)] skew-y-3"><span class="mr-2 text-[hsl(100,60%,50%)]">$</span>{{entry.business_income}}</h5>
+                    <h3 class="text-xl md:text-3xl font-semibold text-[hsl(0,0%,90%)] uppercase tracking-wider">Business Income</h3>
+                    <h5 class="text-2xl md:text-4xl font-bold text-[hsl(0,0%,95%)] skew-y-3"><span class="mr-2 text-[hsl(100,60%,50%)]">$</span>{{entry.business_income}}</h5>
                 </div>
                 <div class="text-center space-y-2">
-                    <h3 class="text-3xl font-semibold text-[hsl(0,0%,90%)] uppercase tracking-wider">Freelance Income</h3>
-                    <h5 class="text-4xl font-bold text-[hsl(0,0%,95%)] skew-y-3"><span class="mr-2 text-[hsl(100,60%,50%)]">$</span>{{entry.freelance_income}}</h5>
+                    <h3 class="text-xl md:text-3xl font-semibold text-[hsl(0,0%,90%)] uppercase tracking-wider">Freelance Income</h3>
+                    <h5 class="text-2xl md:text-4xl font-bold text-[hsl(0,0%,95%)] skew-y-3"><span class="mr-2 text-[hsl(100,60%,50%)]">$</span>{{entry.freelance_income}}</h5>
                 </div>
                 <div class="text-center space-y-2">
-                    <h3 class="text-3xl font-semibold text-[hsl(0,0%,90%)] uppercase tracking-wider">Other Income</h3>
-                    <h5 class="text-4xl font-bold text-[hsl(0,0%,95%)] skew-y-3"><span class="mr-2 text-[hsl(100,60%,50%)]">$</span>{{entry.other_income}}</h5>
+                    <h3 class="text-xl md:text-3xl font-semibold text-[hsl(0,0%,90%)] uppercase tracking-wider">Other Income</h3>
+                    <h5 class="text-2xl md:text-4xl font-bold text-[hsl(0,0%,95%)] skew-y-3"><span class="mr-2 text-[hsl(100,60%,50%)]">$</span>{{entry.other_income}}</h5>
                 </div>
             </div>
-            <button type="button" onclick="openEditOverlay()" class="w-full max-w-3xl bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.33)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg">Edit Information</button>
+            <button type="button" onclick="openEditOverlay()" class="bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.33)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 md:px-12 md:py-4 rounded-lg">Edit Information</button>
         </div>
         <div id="edit-overlay" class="fixed inset-0 bg-gradient-to-t from-[hsl(0,0%,0%,0.8)] to-[hsl(0,0%,0%,0.3)] hidden items-center justify-center z-50">
             <form action="{% url 'edit_income' entry.id %}" method="post" class="w-[90%] max-w-md flex flex-col bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] items-center p-8 space-y-5 border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] rounded-lg">

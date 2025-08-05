@@ -7,7 +7,7 @@ from django.http import HttpResponse
 import csv
 
 # Create your views here.
-@login_required
+# @login_required
 def addBudget(request):
     form = AddBudgetForm()
     if request.method == 'POST':
@@ -22,7 +22,7 @@ def addBudget(request):
 
     return render(request, 'budget/addBudget.html', {'form':form, 'all_entries': all_entries, 'edit_forms': edit_forms})
 
-@login_required
+# @login_required
 def add_custom_category(request):
     if request.method == 'POST':
         name = request.POST.get('name').title()
@@ -31,7 +31,7 @@ def add_custom_category(request):
     
     return redirect('add_budget')
 
-@login_required
+# @login_required
 def editBudget(request, entry_id):
     entry = get_object_or_404(AddBudget, id=entry_id, user=request.user)
 
@@ -44,7 +44,7 @@ def editBudget(request, entry_id):
 
     return redirect('add_budget')
 
-@login_required
+# @login_required
 def deleteBudget(request, entry_id):
     entry = get_object_or_404(AddBudget, id=entry_id, user=request.user)
     if request.method == 'POST':
@@ -52,7 +52,7 @@ def deleteBudget(request, entry_id):
     
     return redirect('add_budget')
 
-@login_required
+# @login_required
 def download_budget(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="budget-for-{}.csv"'.format(request.user.username)

@@ -25,51 +25,38 @@
     <div class="flex flex-col w-full h-full bg-transparent">
         {% if user and user.is_authenticated %}
         <!-- sidebar  -->
-        <div id="sidebar" class="fixed top-0 left-0 h-screen w-20 flex flex-col bg-gradient-to-r from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] pt-4 px-3 space-y-5 shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md z-30">
-            <a href="{% url 'show_income' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
-                <i class="fa-solid fa-money-bill-wave fa-2x text-[hsl(180,100%,60%)]"></i>
+        <div id="sidebar" class="fixed top-0 left-0 h-screen w-12 sm:w-16 md:w-20 flex flex-col bg-gradient-to-r from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] pt-4 px-2 sm:px-3 space-y-3 sm:space-y-5 shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] z-30">
+            <a href="{% url 'show_income' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-1 sm:p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-money-bill-wave text-xl sm:text-2xl md:fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'add_expense' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
-                <i class="fa-solid fa-arrow-up-right-from-square fa-2x text-[hsl(180,100%,60%)]"></i>
+            <a href="{% url 'add_expense' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-1 sm:p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-arrow-up-right-from-square text-xl sm:text-2xl md:fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'add_budget' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
-                <i class="fa-solid fa-wallet fa-2x text-[hsl(180,100%,60%)]"></i>
+            <a href="{% url 'add_budget' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-1 sm:p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-wallet text-xl sm:text-2xl md:fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'dashboard' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
-                <i class="fa-solid fa-chart-line fa-2x text-[hsl(180,100%,60%)]"></i>
+            <a href="{% url 'dashboard' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-1 sm:p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-chart-line text-xl sm:text-2xl md:fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>   
-            <a href="{% url 'password_change' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
-                <i class="fa-solid fa-key fa-2x text-[hsl(180,100%,60%)]"></i>
+            <a href="{% url 'password_change' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-1 sm:p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+                <i class="fa-solid fa-key text-xl sm:text-2xl md:fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>   
         </div>
-        <nav class="fixed top-0 ml-20 flex items-center justify-between w-[calc(100%-5rem)] bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] rounded-md p-2 z-40">
-            <div class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2 border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)]">
-                <i class="fa-solid fa-money-check fa-2x mr-2"></i>
+        <nav class="fixed top-0 ml-12 sm:ml-16 md:ml-20 w-[calc(100%-3rem)] sm:w-[calc(100%-4rem)] md:w-[calc(100%-5rem)] h-20 sm:h-16 md:h-20 flex flex-col items-center justify-center sm:flex-row sm:justify-between sm:px-3 bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] space-y-2 sm:space-y-0 sm:space-x-4 z-40">
+            <div class="w-full sm:w-auto text-xl sm:text-2xl md:text-3xl font-bold tracking-tight bg-[hsl(272,100%,60%)] sm:rounded-md hover:bg-[hsl(272,50%,60%)] flex items-center whitespace-nowrap p-1 sm:p-2 md:p-3 border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] cursor-pointer transition">
+                <i class="fa-solid fa-money-check text-2xl sm:text-3xl md:text-4xl mr-2"></i>
                 Finance Tracker
             </div>
-            <div class="flex space-x-4">
-                {% if all_entries %}
-                <a href="{% url 'download_expense' %}" class="text-2xl font-bold tracking-tight text-[hsl(120,40%,20%)] bg-[hsl(120,40%,80%)] rounded-lg hover:bg-[hsl(120,40%,70%)] flex items-center px-2">
-                    <i class="fa-solid fa-file-arrow-down mr-2"></i>
-                    Download Expense
+            <div class="w-full sm:w-auto flex items-center justify-between whitespace-nowrap sm:justify-none space-x-2">
+                <a href="{% url 'download_budget' %}" class="w-full text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[hsl(120,40%,20%)] bg-[hsl(120,40%,80%)] sm:rounded-md hover:bg-[hsl(120,40%,70%)] flex items-center px-2 cursor-pointer transition">
+                    <i class="fa-solid fa-file-arrow-down text-xl sm:text-2xl md:text-3xl mr-2"></i>
+                    Download Budget
                 </a>
-                {% endif %}
-                <a href="{% url 'logout' %}" class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
-                    <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
+                <a href="{% url 'logout' %}" class="w-full text-lg sm:text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] sm:rounded-md hover:bg-[hsl(272,50%,60%)] flex items-center whitespace-nowrap px-2 cursor-pointer transition">
+                    <i class="fa-solid fa-arrow-right-to-bracket text-xl sm:text-2xl md:text-3xl mr-2"></i>
                     LogOut
                 </a>
             </div>
-        </nav>
-        {% else %}
-        <nav class="fixed top-0 ml-20 flex items-center justify-between w-[calc(100%-5rem)] h-auto bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md p-2 z-40">
-            <div class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
-                <i class="fa-solid fa-money-check fa-2x mr-2"></i>
-                Finance Tracker
-            </div>
-            <a href="{% url 'login' %}" class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
-                <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
-                Login
-            </a>
         </nav>
         {% endif %}
         <!-- overlay button  -->
@@ -80,7 +67,7 @@
         </div>
 
         <!-- pop up notification if expense close to or exceeds budget  -->
-        <div id="toast" class="fixed top-20 right-6 bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] text-center px-3 py-2 rounded-xl border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] shadow-lg z-50 opacity-0 translate-y-[-20px] transition-all duration-300 ease-in-out pointer-events-none">
+        <div id="toast" class="fixed top-20 right-6 bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] text-center p-1 md:px-3 md:py-2 rounded-md md:rounded-xl border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] shadow-lg z-50 opacity-0 translate-y-[-20px] transition-all duration-300 ease-in-out pointer-events-none">
             <p id="toast-msg" class="text-md font-semibold text-[hsl(0,100%,50%)]"></p>
         </div>
 
@@ -95,12 +82,14 @@
                             <option class="text-center" value="{{value}}" {% if form.exp_category.value == value %}selected{% endif %}>{{label}}</option>
                         {% endfor %}
                     </select>
+
                 </div>
                 <div class="container hidden flex-col items-center space-y-5">
                     <label class="text-2xl font-bold text-[hsl(0,0%,95%)]" for="">Name</label>
                     <div class="w-full flex items-center justify-center space-x-2">
                         <input type="text" name="name" id="custom-category" autocomplete="off" placeholder="(e.g. Home, Shopping, Rent...)" class="text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-bold p-3 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)] mr-2">
                         <button type="button" class="p-3 text-xl bg-[hsl(0,0%,15%)]" id="show-dropdown">↩️</button>
+
                     </div>
                 </div>
                 <div class="container flex flex-col items-center space-y-5">
@@ -109,6 +98,7 @@
                         <span class="text-lg font-bold">$</span>
                         <input type="number" name="amount" id="amount" min="0" max="9999999999" step="0.01" class="w-full text-lg bg-[hsl(0,0%,15%)] font-bold focus:outline-none" required>
                     </div>
+
                 </div>
                 <div class="container flex flex-col items-center space-y-5">
                     <label class="text-2xl font-bold text-[hsl(0,0%,95%)]" for="">Comment</label>
@@ -124,22 +114,22 @@
     <!-- overlay ends here  -->
 
     
-    <div class="min-w-[80%] min-h-screen m-[10%] bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl">
-        <h1 class="text-[hsl(0,0%,95%)] text-5xl font-bold leading-tight text-center py-8"><span class="text-[hsl(180,100%,60%)]">Expense</span> Tracking Page</h1>
-        <div class="mt-2 flex items-center justify-evenly space-x-3">
+    <div class="ml-12 sm:ml-16 md:ml-20 w-[calc(100%-3rem)] sm:w-[calc(100%-4rem)] md:w-[calc(100%-5rem)] mt-20 sm:mt-16 md:mt-20 min-h-screen bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)]">
+        <h1 class="text-[hsl(0,0%,95%)] text-3xl sm:text-5xl md:text-6xl font-bold leading-tight text-center py-8"><span class="text-[hsl(180,100%,60%)]">Expense</span> Tracking Page</h1>
+        <div class="w-full p-2 flex items-center sm:justify-evenly sm:space-x-3">
             {% for _, label in form.fields.exp_category.choices %}
             <button 
             type="button"
-            class="category-btn bg-[hsl(0,0%,10%)] text-[hsl(0,0%,95%)] hover:bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] text-lg font-bold tracking-wide px-4 py-2 rounded-md border border-[hsl(0,0%,30%)] transition-all duration-150 hover:scale-95" 
+            class="category-btn w-full sm:w-auto bg-[hsl(0,0%,10%)] text-[hsl(0,0%,95%)] hover:bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] text-lg font-bold tracking-wide px-4 py-2 sm:rounded-md border border-[hsl(0,0%,30%)] transition-all duration-150 hover:scale-95" 
             data-category="{{ label }}">
             {{ label|title }}
             </button>                
             {% endfor %}
         </div>
-        <div id="card" class="grid grid-cols-3 gap-x-2 gap-y-3 p-10">
+        <div id="card" class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-1 lg:gap-x-2 gap-y-2 lg:gap-y-3 p-6 md:8 lg:p-10">
             {% for entries in all_entries %}
-                <div class="expense-item flex flex-col justify-between bg-[hsl(0,0%,10%)] hover:bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] border border-[hsl(0,0%,30%)] rounded-lg shadow-xl p-5 min-h-[300px]" data-category="{{ entries.exp_category }}">
-                    <div>
+                <div class="expense-item w-full flex flex-col justify-between bg-[hsl(0,0%,10%)] hover:bg-gradient-to-t from-[hsl(0,0%,10%)] to-[hsl(0,0%,15%)] border border-[hsl(0,0%,30%)] rounded-lg shadow-xl p-5 min-h-[300px]" data-category="{{ entries.exp_category }}">
+                    <div class="w-full">
                         <p class="text-[hsl(0,0%,95%)] text-2xl font-bold mb-2">
                             <span class="text-2xl font-bold mr-1">$</span>{{ entries.amount }}
                         </p>    
@@ -149,7 +139,9 @@
                             <p class="text-[hsl(0,0%,90%)] text-xl font-bold">{{ entries.get_exp_category_display }}</p>                           
                         {% endif %}
                         {% if entries.comment %}
+                        <div class="max-h-40 overflow-y-auto pr-1">
                             <p class="mt-4 text-[hsl(0,0%,70%)] text-md font-semibold tracking-wide">{{ entries.comment }}</p>
+                        </div>
                         {% endif %}
                     </div>
                         
@@ -190,13 +182,13 @@
                             <div class="edit-container flex flex-col items-center w-full space-y-5">
                                 <label class="text-2xl font-bold text-[hsl(0,0%,95%)]" for="">Comment</label>
                                 {% if edit_form.initial.comment %}
-                                    <input type="text" name="comment" value="{{edit_form.initial.comment}}" autocomplete="off" class="w-full text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-semibold p-2 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)]">
+                                    <input id="edit-comment-{{entries.id}}" type="text" name="comment" value="{{edit_form.initial.comment}}" autocomplete="off" class="w-full text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-semibold p-2 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)]">
                                 {% else %}
-                                    <input type="text" name="comment" autocomplete="off" class="w-full text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-semibold p-2 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)]">
+                                    <input id="edit-comment-{{entries.id}}" type="text" name="comment" autocomplete="off" class="w-full text-lg text-[hsl(0,0%,90%)] bg-[hsl(0,0%,15%)] font-semibold p-2 focus:outline-none focus:ring-2 focus:ring-[hsl(0,0%,30%)]">
                                 {% endif %}
                             </div>
                             <div class="w-full h-12 flex space-x-2">
-                                <button type="submit" class="w-[50%] bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.3)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg">Submit</button>
+                                <button id="edit-submit-btn-{{entries.id}}" type="submit" class="w-[50%] bg-[hsl(0,0%,5%)] hover:bg-[hsl(232,74%,62%,0.3)] text-[hsl(232,100%,50%)] font-bold border border-[hsl(232,74%,62%)] px-6 py-2 rounded-lg">Submit</button>
                                 <button id="edit-back-btn-{{entries.id}}" type="button" class="w-[50%] bg-[hsl(0,0%,5%)] hover:bg-[hsl(0,0%,95%,0.3)] text-[hsl(0,0%,95%)] font-bold border border-[hsl(0,0%,95%)] px-6 py-2 rounded-lg">Back</button>
                             </div>
                         {% endwith %}
@@ -208,5 +200,5 @@
         </div>
     </div>
 </body>
-<script src="{% static 'js/addExpense_v0.js' %}"></script>
+<script src="{% static 'js/addExpense_v7.js' %}"></script>
 </html>

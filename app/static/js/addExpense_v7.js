@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('overlay');
     const body = document.querySelector('body');
     const backBtn = document.getElementById('back-btn');
+    const subBtn = document.getElementById('submit-btn');
 
     const selectedExpenseCategory = document.getElementById('expense-category')
     const container = selectedExpenseCategory.closest('.container')
@@ -60,6 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
     backBtn.addEventListener('click', () => {
         overlay.classList.replace('flex', 'hidden');
     });
+
+    subBtn.addEventListener('click', (e) => {
+        
+        const commentVal = document.getElementById('comment').value;
+        if (selectedExpenseCategory.value == 'other' && customCategory.value.length > 50){
+            e.preventDefault();
+            alert('Maximum characters exceeded! Atmost 50 characters accpeted for Custom Category Name.')
+        }
+        else if (commentVal.length > 255) {
+            e.preventDefault();
+            alert('Maximum characters exceeded! Atmost 255 characters accepted for a Comment.')
+        }
+    })
 
     function openEditOverlay(id) {
         const editOverlay = document.getElementById(`edit-expense-overlay-${id}`);
@@ -131,6 +145,20 @@ document.addEventListener('DOMContentLoaded', () => {
         editBackBtn.addEventListener('click', () => {
             editOverlay.classList.replace('flex', 'hidden')
         })
+
+        const editSubBtn = document.getElementById(`edit-submit-btn-${id}`);
+        editSubBtn.addEventListener('click', (e) => {
+        
+        const editCommentVal = document.getElementById(`edit-comment-${id}`).value;
+        if (editSelectedExpenseCategory.value == 'other' && editCustomCategory.value.length > 50){
+            e.preventDefault();
+            alert('Maximum characters exceeded! Atmost 50 characters accpeted for Custom Category Name.')
+        }
+        else if (editCommentVal.length > 255) {
+            e.preventDefault();
+            alert('Maximum characters exceeded! Atmost 255 characters accepted for a Comment.')
+        }
+    })
     }
     window.openEditOverlay = openEditOverlay;
 

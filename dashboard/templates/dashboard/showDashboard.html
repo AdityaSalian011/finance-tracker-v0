@@ -20,128 +20,140 @@
     <div class="flex flex-col w-full h-full bg-transparent">
         {% if user and user.is_authenticated %}
         <!-- sidebar  -->
-        <div id="sidebar" class="fixed top-0 left-0 h-screen w-20 flex flex-col bg-gradient-to-r from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] pt-4 px-3 space-y-5 shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md z-30">
-            <a href="{% url 'show_income' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+        <div id="sidebar" class="fixed top-0 left-0 h-screen w-16 md:w-20 flex flex-col bg-gradient-to-r from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] pt-4 px-3 space-y-5 shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] z-30">
+            <a href="{% url 'show_income' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
                 <i class="fa-solid fa-money-bill-wave fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'add_expense' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+            <a href="{% url 'add_expense' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
                 <i class="fa-solid fa-arrow-up-right-from-square fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'add_budget' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+            <a href="{% url 'add_budget' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
                 <i class="fa-solid fa-wallet fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>
-            <a href="{% url 'dashboard' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+            <a href="{% url 'dashboard' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
                 <i class="fa-solid fa-chart-line fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>   
-            <a href="{% url 'password_change' %}" class="w-auto h-12 flex items-center justify-center bg-[hsl(0,0%,20%)] hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
+            <a href="{% url 'password_change' %}" class="flex items-center justify-center bg-[hsl(0,0%,20%)] p-2 md:p-3 hover:bg-[hsl(0,0%,30%)] rounded-lg hover:bg-[hsl(0,0%,70%)] hover:rounded-full transition-all duration-500">
                 <i class="fa-solid fa-key fa-2x text-[hsl(180,100%,60%)]"></i>
             </a>   
         </div>
-        <nav class="fixed top-0 ml-20 flex items-center justify-between w-[calc(100%-5rem)] bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] rounded-md p-2 z-40">
-            <div class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2 border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)]">
+        <nav class="fixed top-0 ml-16 md:ml-20 w-[calc(100%-4rem)] md:w-[calc(100%-5rem)] flex items-center justify-between bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-b-[hsl(0,0%,50%)] p-2 z-40">
+            <div class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2 border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)]">
                 <i class="fa-solid fa-money-check fa-2x mr-2"></i>
                 Finance Tracker
             </div>
             <div class="flex space-x-4">
                 {% if all_entries %}
-                <a href="{% url 'download_expense' %}" class="text-2xl font-bold tracking-tight text-[hsl(120,40%,20%)] bg-[hsl(120,40%,80%)] rounded-lg hover:bg-[hsl(120,40%,70%)] flex items-center px-2">
+                <a href="{% url 'download_expense' %}" class="text-xl md:text-2xl font-bold tracking-tight text-[hsl(120,40%,20%)] bg-[hsl(120,40%,80%)] rounded-lg hover:bg-[hsl(120,40%,70%)] flex items-center px-2">
                     <i class="fa-solid fa-file-arrow-down mr-2"></i>
                     Download Expense
                 </a>
                 {% endif %}
-                <a href="{% url 'logout' %}" class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+                <a href="{% url 'logout' %}" class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
                     <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
                     LogOut
                 </a>
             </div>
         </nav>
         {% else %}
-        <nav class="fixed top-0 ml-20 flex items-center justify-between w-[calc(100%-5rem)] h-auto bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md p-2 z-40">
-            <div class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+        <nav class="fixed top-0 ml-16 md:ml-20 w-[calc(100%-4rem)] md:w-[calc(100%-5rem)] flex items-center justify-between w-[calc(100%-5rem)] h-auto bg-gradient-to-b from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] shadow-lg border border-[hsl(0,0%,30%)] border-r-[hsl(0,0%,50%)] rounded-md p-2 z-40">
+            <div class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
                 <i class="fa-solid fa-money-check fa-2x mr-2"></i>
                 Finance Tracker
             </div>
-            <a href="{% url 'login' %}" class="text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
+            <a href="{% url 'login' %}" class="text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] rounded-lg hover:bg-[hsl(272,50%,60%)] flex items-center px-2">
                 <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>
                 SignIn
             </a>
         </nav>
         {% endif %}
-        <div class="p-20">
-            <h1 class="text-[hsl(180,100%,60%)] text-5xl font-bold leading-tight text-center py-8">Dashboard</h1>
-            <div class="grid grid-cols-4 gap-x-2 gap-y-4 [grid-template-rows:repeat(7, minmax(100px,auto))]">
+        <div class="ml-12 sm:ml-16 md:ml-20 w-[calc(100%-3rem)] sm:w-[calc(100%-4rem)] lg:w-[calc(100%-5rem)] min-h-screen bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl shadow-2xl p-3 sm:p-5 lg:p-10 flex flex-col items-center justify-center space-y-8 sm:space-y-14 animate-fade-in mt-12 sm:mt-14">
+            <h1 class="text-[hsl(180,100%,60%)] text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-center py-6 sm:py-10">Dashboard</h1>
+            <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                <!-- Total Income -->
                 <div class="min-h-[100px] bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl">
-                    <div class="py-8 text-center space-y-4">
-                        <p class="text-[hsl(0,0%,70%)] text-lg font-semibold tracking-wide leading-tight">TOTAL INCOME</p>
-                        <p class="text-[hsl(120,100%,39%)] text-4xl font-bold tracking-wide"><span class="leading-tight pr-2">$</span>{{total_income|floatformat:2}}</p>
+                    <div class="py-4 sm:py-6 md:py-8 text-center space-y-2 sm:space-y-4">
+                        <p class="text-[hsl(0,0%,70%)] text-sm sm:text-base md:text-lg font-semibold tracking-wide leading-tight">TOTAL INCOME</p>
+                        <p class="text-[hsl(120,100%,39%)] text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"><span class="leading-tight pr-1 sm:pr-2">$</span>{{total_income|floatformat:2}}</p>
                     </div>
                 </div>
+                
+                <!-- Total Expense -->
                 <div class="min-h-[100px] bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl">
-                    <div class="py-8 text-center space-y-4">
-                        <p class="text-[hsl(0,0%,70%)] text-lg font-semibold tracking-wide leading-tight">TOTAL EXPENSE</p>
-                        <p class="text-[hsl(0,100%,39%)] text-4xl font-bold tracking-wide"><span class="leading-tight pr-2">$</span>{{total_expense|floatformat:2}}</p>
+                    <div class="py-4 sm:py-6 md:py-8 text-center space-y-2 sm:space-y-4">
+                        <p class="text-[hsl(0,0%,70%)] text-sm sm:text-base md:text-lg font-semibold tracking-wide leading-tight">TOTAL EXPENSE</p>
+                        <p class="text-[hsl(0,100%,39%)] text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"><span class="leading-tight pr-1 sm:pr-2">$</span>{{total_expense|floatformat:2}}</p>
                     </div>
                 </div>
-                <div class="flex min-h-[100px] col-span-2 bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl">
-                    <div class="px-10 py-8 flex flex-col items-center justify-start space-y-4">
-                        <p class="text-[hsl(0,0%,70%)] text-lg font-semibold tracking-wide leading-tight">TOTAL BALANCE</p>
-                        <p class="text-[hsl(0,0%,95%)] text-4xl font-bold tracking-wide"><span class="leading-tight pr-2">$</span>{{balance|floatformat:2}}</p>
-                    </div>
-                    <div class="w-full flex items-center justify-center pr-6">
-                        <div class="w-full h-8 bg-[hsl(0,0%,90%)] rounded-full overflow-hidden">
-                            <div id="balance-bar" class="w-0 h-full rounded-full transition-all duration-700"></div>
+                
+                <!-- Total Balance -->
+                <div class="min-h-[100px] sm:col-span-2 bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl">
+                    <div class="p-3 sm:p-4 md:p-6 flex flex-col sm:flex-row items-center justify-between h-full">
+                        <div class="flex flex-col items-center sm:items-start space-y-1 sm:space-y-2 md:space-y-4 mb-3 sm:mb-0">
+                            <p class="text-[hsl(0,0%,70%)] text-sm sm:text-base md:text-lg font-semibold tracking-wide leading-tight">TOTAL BALANCE</p>
+                            <p class="text-[hsl(0,0%,95%)] text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide"><span class="leading-tight pr-1 sm:pr-2">$</span>{{balance|floatformat:2}}</p>
+                        </div>
+                        <div class="w-full sm:w-1/2 flex items-center justify-center">
+                            <div class="w-full h-6 sm:h-8 bg-[hsl(0,0%,90%)] rounded-full overflow-hidden">
+                                <div id="balance-bar" class="w-0 h-full rounded-full transition-all duration-700"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="min-h-[100px] row-span-2 col-span-2 bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl ">
-                    <div class="flex flex-col items-center pl-10 py-6 pr-6 space-y-4 h-full">
-                        <p class="flex items-center justify-start w-full text-[hsl(0,0%,80%)] text-2xl font-bold">
+                
+                <!-- Daily Expense Chart -->
+                <div class="min-h-[300px] sm:min-h-[350px] col-span-1 sm:col-span-2 bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl">
+                    <div class="flex flex-col items-center p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-4 h-full">
+                        <p class="flex items-center justify-start w-full text-[hsl(0,0%,80%)] text-lg sm:text-xl md:text-2xl font-bold">
                             Daily Expense
                         </p>
-                        <div class="flex items-center justify-center w-full overflow-hidden">
+                        <div class="flex items-center justify-center w-full h-full overflow-hidden">
                             <canvas id="daily-expense-chart" class="w-full h-full"></canvas>
                         </div>
                     </div>
                 </div>
-                <div class="min-h-[100px] row-span-3 col-span-2 bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl ">
-                    <div class="flex flex-col items-center pl-10 py-6 pr-6 space-y-4 h-full">
-                        <p class="flex items-center justify-start w-full text-[hsl(0,0%,80%)] text-2xl font-bold">
+                
+                <!-- Expense Categories Chart -->
+                <div class="min-h-[300px] sm:min-h-[350px] col-span-1 sm:col-span-2 bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl">
+                    <div class="flex flex-col items-center p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-4 h-full">
+                        <p class="flex items-center justify-start w-full text-[hsl(0,0%,80%)] text-lg sm:text-xl md:text-2xl font-bold">
                             Expense Categories
                         </p>
-                        <div class="flex items-center justify-center w-full max-w-[400px] overflow-hidden">
+                        <div class="flex items-center justify-center w-full h-full max-w-[400px] overflow-hidden">
                             <canvas id="expense-chart" class="w-full h-full"></canvas>
                         </div>
                     </div>
                 </div>
 
-                <!-- budget tracker  -->
-                <div class="min-h-[100px] row-span-3 col-span-2 bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl">
-                    <div class="flex flex-col items-center pl-10 py-6 pr-6 space-y-4">
-                        <p class="flex items-center justify-start w-full text-[hsl(0,0%,80%)] text-2xl font-bold">
+                <!-- Budget Tracker -->
+                <div class="min-h-[300px] sm:min-h-[350px] col-span-1 sm:col-span-2 bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl">
+                    <div class="flex flex-col items-center p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-4 h-full">
+                        <p class="flex items-center justify-start w-full text-[hsl(0,0%,80%)] text-lg sm:text-xl md:text-2xl font-bold">
                             Budget Tracker
                         </p>
                         
                         {% for item in budget_tracker %}
-                        <div class="flex items-center justify-center w-full">
+                        <div class="flex flex-col w-full space-y-1 sm:space-y-2">
                             <div class="flex items-center justify-between w-full">
-                                <p class="text-lg font-semibold text-[hsl(0,0%,70%)] tracking-tight">{{item.category}}</p>
-                                <p class="text-md font-semibold text-[hsl(0,0%,50%)] tracking-tight">{{item.expense_amount}}/ {{item.budget_amount}}<span class="ml-2 text-lg font-bold tracking-wide text-[hsl(0,0%,60%)]">{{item.percentage|floatformat:2}}%</span></p>
+                                <p class="text-sm sm:text-base md:text-lg font-semibold text-[hsl(0,0%,70%)] tracking-tight">{{item.category}}</p>
+                                <p class="text-xs sm:text-sm md:text-base font-semibold text-[hsl(0,0%,50%)] tracking-tight">{{item.expense_amount}}/ {{item.budget_amount}}<span class="ml-1 sm:ml-2 text-sm sm:text-lg font-bold tracking-wide text-[hsl(0,0%,60%)]">{{item.percentage|floatformat:2}}%</span></p>
+                            </div>
+                            <div class="w-full h-3 sm:h-4 md:h-5 bg-[hsl(0,0%,90%)] rounded-full overflow-hidden">
+                                <div class="budget-bar w-0 h-full rounded-full bg-[{{item.colors}}] transition-all duration-700" data-percentage="{{item.percentage}}"></div>
                             </div>
                         </div>
-                        <div class="w-full h-5 bg-[hsl(0,0%,90%)] rounded-full overflow-hidden">
-                            <div class="budget-bar w-0 h-full rounded-full bg-[{{item.colors}}] transition-all duration-700" data-percentage="{{item.percentage}}"></div>
-                        </div>
                         {% endfor %}
-                            
                     </div>
                 </div>
-                <div class="min-h-[100px] row-span-2 col-span-2 bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl ">
-                    <div class="flex flex-col items-center pl-10 py-6 pr-6 space-y-6 h-full">
-                        <p class="flex items-center justify-start w-full text-[hsl(0,0%,80%)] text-2xl font-bold">
+                
+                <!-- Recent Transactions -->
+                <div class="min-h-[300px] sm:min-h-[350px] col-span-1 sm:col-span-2 bg-gradient-to-t from-[hsl(0,0%,5%)] to-[hsl(0,0%,10%)] border border-[hsl(0,0%,30%)] border-t-[hsl(0,0%,50%)] rounded-xl">
+                    <div class="flex flex-col items-center p-3 sm:p-4 md:p-6 space-y-2 sm:space-y-4 h-full">
+                        <p class="flex items-center justify-start w-full text-[hsl(0,0%,80%)] text-lg sm:text-xl md:text-2xl font-bold">
                             Recent Transactions
                         </p>
-                        <div class="w-full h-full divide-y divide-gray-300 divide-solid">
-                            <div class="grid grid-cols-4 text-center text-[hsl(0,0%,70%)] text-lg font-bold py-3">
+                        <div class="w-full h-full divide-y divide-gray-300 divide-solid overflow-x-auto">
+                            <div class="grid grid-cols-4 min-w-[500px] text-center text-[hsl(0,0%,70%)] text-xs sm:text-sm md:text-lg font-bold py-2 sm:py-3">
                                 <p>Date</p>
                                 <p>Description</p>
                                 <p>Category</p>
@@ -149,7 +161,7 @@
                             </div>
                             
                             {% for transaction in recent_transaction|slice:":4" %}
-                                <div class="grid grid-cols-4 text-center text-[hsl(0,0%,60%)] text-lg font-semibold py-3">
+                                <div class="grid grid-cols-4 min-w-[500px] text-center text-[hsl(0,0%,60%)] text-xs sm:text-sm md:text-base font-semibold py-2 sm:py-3">
                                     <p>{{transaction.date}}</p>
                                     <p>{{transaction.name}}</p>
                                     <p>{{transaction.exp_category}}</p>
@@ -255,6 +267,8 @@
                 }]
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 cutout: '60%',
                 plugins: {
                     legend: {

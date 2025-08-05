@@ -7,7 +7,7 @@ from django.http import HttpResponse
 import csv
 
 # Create your views here.
-@login_required
+@login_required 
 def addIncome(request):
     if AddIncome.objects.filter(user=request.user).exists():
         return redirect('show_income')

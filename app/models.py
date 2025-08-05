@@ -15,7 +15,7 @@ class AddExpense(models.Model):
     ]
     exp_category = models.CharField(max_length=13, choices=EXP_CAT_OPTIONS, default='food')
 
-    name = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
 
     amount = models.DecimalField(max_digits=10, decimal_places=2, default=0, validators=[MinValueValidator(0)])
     
