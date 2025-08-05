@@ -53,10 +53,16 @@
                 <i class="fa-solid fa-money-check text-2xl sm:text-3xl md:text-4xl mr-2"></i>
                 Finance Tracker
             </div>
+            <div class="w-full sm:w-auto flex items-center justify-between whitespace-nowrap sm:justify-none space-x-2">
+                <a href="{% url 'download_income' %}" class="w-full text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-[hsl(120,40%,20%)] bg-[hsl(120,40%,80%)] sm:rounded-md hover:bg-[hsl(120,40%,70%)] flex items-center px-2 cursor-pointer transition">
+                    <i class="fa-solid fa-file-arrow-down text-xl sm:text-2xl md:text-3xl mr-2"></i>
+                    Download Income
+                </a>
                 <a href="{% url 'logout' %}" class="w-full text-lg sm:text-xl md:text-2xl font-bold tracking-tight bg-[hsl(272,100%,60%)] sm:rounded-md hover:bg-[hsl(272,50%,60%)] flex items-center whitespace-nowrap px-2 cursor-pointer transition">
                     <i class="fa-solid fa-arrow-right-to-bracket text-xl sm:text-2xl md:text-3xl mr-2"></i>
                     LogOut
                 </a>
+            </div>
         </nav>
         {% endif %}
         {% if not entries %}
